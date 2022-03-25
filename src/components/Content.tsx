@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ContentProps, GenreResponseProps, MovieProps } from '../@types/types'
+import { ContentProps, MovieProps } from '../@types/types'
 import { api } from '../services/api'
 import { Header } from './Header'
 import { MovieCard } from './MovieCard'

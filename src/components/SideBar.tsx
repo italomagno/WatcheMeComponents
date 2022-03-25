@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState , memo } from "react";
 import { GenreResponseProps, SideBarProps } from "../@types/types";
 import { api } from "../services/api";
 import { Button } from "./Button";
 
 
 
-export function SideBar({selectedGenreId, setSelectedGenreId}:SideBarProps) {
+function SideBarComponent({selectedGenreId, setSelectedGenreId, handleClickButton}:SideBarProps) {
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
   
-  function handleClickButton(id: number) {
-    setSelectedGenreId(id);
-  }
+  
 
   useEffect(() => {
     api.get<GenreResponseProps[]>('genres').then(response => {
@@ -35,7 +33,9 @@ export function SideBar({selectedGenreId, setSelectedGenreId}:SideBarProps) {
   </div>
 
 </nav>
-  )
-
-  
+  ) 
 }
+
+export const SideBar = memo(SideBarComponent, ( prevProps,nextProps)=>{
+  return Object.is(prevProps.selectedGenreId,nextProps.selectedGenreId)
+})

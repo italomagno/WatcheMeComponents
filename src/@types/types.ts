@@ -19,6 +19,7 @@ export interface SideBarProps  {
 
   selectedGenreId: number
   setSelectedGenreId: (id:  number)=>void
+  handleClickButton: (id: number) => void
 
 }
 
